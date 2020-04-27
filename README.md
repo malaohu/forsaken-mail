@@ -1,12 +1,6 @@
-由于原作者并未将改源码部署到Docker.com上，我将源码forked出一份。部署到Docker.com。方便使用。
-
-
-本人只修改了Dockerfile部分代码，方便部署。
+由原作者源码本人只修改了部分代码。
 
 forked from denghongcai/forsaken-mail!!!
-
-
-
 
 Forsaken-Mail
 ==============
