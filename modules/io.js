@@ -6,7 +6,7 @@
 
 let shortid = require('shortid');
 let mailin = require('./mailin');
-
+let config = require('../config')
 let onlines = new Map();
 
 module.exports = function(io) {
@@ -31,6 +31,9 @@ module.exports = function(io) {
     });
 
     socket.on('set shortid', function(id) {
+      if(config.is_blacklist && config.pre_blacklist.indexOf(id.toLowerCase())>-1){
+        return socket.emit('shortid', shortid.generate().toLowerCase());
+      }
       onlines.delete(socket.shortid);
       socket.shortid = id;
       onlines.set(socket.shortid, socket);
