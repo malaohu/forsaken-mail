@@ -1,5 +1,22 @@
-由于原作者并未将改源码部署到Docker.com上，我将源码forked出一份。部署到Docker.com。方便使用。
 
+
+2020年5月13日15:50:42 更新：
+* 应大佬的要求新增了邮箱前缀黑名单功能呢
+* 新增pm2启动json文件
+
+```
+#启动
+pm2 start start.json
+
+#启动黑名单
+pm2 start start-blacklist.json
+
+```
+
+
+
+
+由于原作者并未将改源码部署到Docker.com上，我将源码forked出一份。部署到Docker.com。方便使用。
 
 本人只修改了Dockerfile部分代码，方便部署。
 
