@@ -1,0 +1,5 @@
+{
+    "name": "forsaken-mail",
+    "script": "node ./bin/www",   
+    "cwd":"./", 
+}

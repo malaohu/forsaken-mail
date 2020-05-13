@@ -1,0 +1,9 @@
+{
+    "name": "forsaken-mail",
+    "script": "./bin/www",   
+    "cwd":"./",
+    "env": {
+        "PORT": 3001,
+        "BLACKLIST": 1,
+    },
+}
