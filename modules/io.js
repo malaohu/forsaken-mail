@@ -31,7 +31,7 @@ module.exports = function(io) {
     });
 
     socket.on('set shortid', function(id) {
-      if(config.is_blacklist && config.pre_blacklist.indexOf(id.toLowerCase())>-1){
+      if(process.env.BLACKLIST && config.pre_blacklist.indexOf(id.toLowerCase())>-1){
         return socket.emit('shortid', shortid.generate().toLowerCase());
       }
       onlines.delete(socket.shortid);

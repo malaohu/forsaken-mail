@@ -17,6 +17,8 @@ let http = require('http');
  * Get port from environment and store in Express.
  */
 
+console.log(process.env.BLACKLIST)
+
 let port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
@@ -95,3 +97,4 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
