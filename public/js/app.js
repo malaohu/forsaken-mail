@@ -57,7 +57,7 @@ $(function(){
     localStorage.setItem('shortid', id);
     var mailaddress = id + '@' + location.hostname;
     $('#shortid').val(mailaddress).parent().siblings('button').find('.mail').attr('data-clipboard-text', mailaddress);
-    $("#sendemail").href="mail:" + mailaddress;
+    $("#sendemail").attr("href", "mailto:" + mailaddress);
   };
 
   $('#refreshShortid').click(function() {
