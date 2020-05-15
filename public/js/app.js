@@ -6,6 +6,8 @@ $(function(){
   $('.ui.modal')
     .modal()
   ;
+ 
+  Push.Permission.request();
 
   var clipboard = new Clipboard('.copyable');
 
@@ -81,18 +83,10 @@ $(function(){
   });
 
   socket.on('mail', function(mail) {
-    if(('Notification' in window)) {
-      if(Notification.permission === 'granted') {
-        new Notification('New mail from ' + mail.headers.from);
-      }
-      else if(Notification.permission !== 'denied') {
-        Notification.requestPermission(function(permission) {
-          if(permission === 'granted') {
-            new Notification('New mail from ' + mail.headers.from);
-          }
-        })
-      }
-    }
+    Push.create("新邮件", {
+      body: "邮件来自："+ mail.headers.from,
+      timeout: 4000
+    }); 
     $tr = $('<tr>').data('mail', mail);
     $tr
       .append($('<td>').text(mail.headers.from))
