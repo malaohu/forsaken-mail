@@ -30,3 +30,8 @@ pm2 start start-blacklist.json
 ```
 
 愉快的使用吧！
+
+### 配置
+
+黑名单配置：
+config.js 中

@@ -1,10 +1,10 @@
 FROM node:latest
-MAINTAINER Hongcai Deng <admin@dhchouse.com>
+MAINTAINER malaohu <malaohu@live.com>
 
 RUN apt-get clean all
 RUN apt-get update
 RUN apt-get -y install git
-RUN git clone https://github.com/denghongcai/forsaken-mail.git /forsaken-mail
+RUN git clone https://github.com/malaohu/forsaken-mail.git /forsaken-mail
 
 WORKDIR /forsaken-mail
 
