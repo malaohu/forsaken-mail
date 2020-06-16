@@ -27,6 +27,7 @@
     "express": "^4.13.3",
     "mailin": "^3.0.2",
     "shortid": "^2.2.4",
-    "socket.io": "^1.3.7"
+    "socket.io": "^1.3.7",
+    "tracer": "^1.1.2"
   }
 }
