@@ -19,7 +19,7 @@ let http = require('http');
 
 console.log(process.env.BLACKLIST)
 
-let port = normalizePort(process.env.PORT || '3000');
+let port = normalizePort(process.env.PORT || '4000');
 app.set('port', port);
 
 /**

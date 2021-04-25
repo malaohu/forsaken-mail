@@ -11,16 +11,42 @@ let onlines = new Map();
 
 module.exports = function(io) {
   mailin.on('message', function(connection, data) {
-    let to = data.headers.to.toLowerCase();
+    console.log("*****************************")
+    console.log("标题：" + data.subject)
+    console.log("HTML：" + data.textAsHtml)
+    console.log("文本：" + data.text)
+    console.log("时间：" + data.date)
+    console.log("发件：" + data.from.text)
+    console.log("*****************************")
+      
+    let to = data.envelopeTo[0].address.toLowerCase();
     let exp = /[\w\._\-\+]+@[\w\._\-\+]+/i;
     if(exp.test(to)) {
       let matches = to.match(exp);
       let shortid = matches[0].substring(0, matches[0].indexOf('@'));
       if(onlines.has(shortid)) {
-        onlines.get(shortid).emit('mail', data);
+        let _data = {
+            "subject": data.subject,
+            "text" : data.text,
+            "date" : data.date,
+            "from" : data.from.text,
+            "texthtml" : data.textAsHtml,
+            "html" : data.html
+        }
+        onlines.get(shortid).emit('mail', _data);
       }
     }
   });
+  
+  mailin.on('validateSender', function(session, address, callback) {
+    if (/163.com/ig.test(address)) { 
+        let _err = new Error('You are blocked(TM你已经被我ban了)'); 
+        _err.responseCode = 530; 
+        callback(_err);
+    } else {
+        callback()
+    }   
+  })
 
   io.on('connection', socket => {
     socket.on('request shortid', function() {
