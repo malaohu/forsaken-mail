@@ -29,5 +29,5 @@ Open your browser and type in
 http://localhost:3000
 ```
 
-Enjoy!
+Enjoy! 
 
