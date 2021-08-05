@@ -3,3 +3,5 @@
     "script": "node ./bin/www",   
     "cwd":"./", 
 }
+
+
