@@ -1,8 +1,0 @@
-{
-    "name": "forsaken-mail",
-    "script": "./bin/www",   
-    "cwd":"./",
-    "env": {
-        "BLACKLIST": 1,
-    },
-}

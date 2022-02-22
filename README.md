@@ -1,33 +1,33 @@
-Forsaken-Mail 
+Forsaken-Mail
 ==============
-A self-hosted disposable mail service.
+即收即毁的临时邮件服务
 
-[Online Demo](http://forsaken.somecolor.cc/)
+[在线演示](http://forsaken.somecolor.cc/)
 
-### Installation
 
-#### Setting up your DNS correctly
+### 步骤 
 
-In order to receive emails, your smtp server address should be made available somewhere. Two records should be added to your DNS records. Let us pretend that we want to receive emails at ```*@subdomain.domain.com```:
-* First an MX record: ```subdomain.domain.com MX 10 mxsubdomain.domain.com```. This means that the mail server for addresses like ```*@subdomain.domain.com``` will be ```mxsubdomain.domain.com```.
-* Then an A record: ```mxsubdomain.domain.com A the.ip.address.of.your.mailin.server```. This tells at which ip address the mail server can be found.
+### 域名解析 
 
-You can fire up Mailin (see next section) and use an [smtp server tester](http://mxtoolbox.com/diagnostic.aspx) to verify that everything is correct.
+为了接收电子邮件，您的smtp服务器地址应该在某处可用。两个记录应该添加到您的DNS记录中。假设我们想在``*@subdomain.domain.com```:*接收电子邮件，首先是MX记录：```subdomain.domain.com MX 10 mxsubdomain.domain.com```。这意味着像``*@subdomain.domain.com``这样的地址的邮件服务器将是``mxsubdomain.domain.com```.*然后是A记录：``mxsubdomain.domain.com是.your.mailin.server```的.ip.address。这会告诉您可以在哪个ip地址找到邮件服务器。
 
-#### Let's Go
-general way:
+您可以启动Mailin（请参阅下一节）并使用[smtp服务器测试]（http://mxtoolbox.com/diagnostic.aspx）验证所有内容是否正确。
+
+
+### 开始 
+
+部署文章：https://51.ruyo.net/3210.html
+
 ```
 npm install && npm start
 ```
-if you want to run this inside a docker container
-```
-docker build -t denghongcai/forsaken-mail .
-docker run --name forsaken-mail -d -p 25:25 -p 3000:3000 denghongcai/forsaken-mail
-```
-Open your browser and type in
-```
-http://localhost:3000
-```
 
-Enjoy! 
+```
+pm2 start start.json
 
+
+愉快的使用吧！ 
+
+### 配置
+
+config.js 支持黑名单, 支持拒收某域名的邮件

@@ -1,7 +1,3 @@
-/**
- * Created by Hongcai Deng on 2015/12/28.
- */
-
 'use strict';
 
 let shortid = require('shortid');
@@ -39,8 +35,12 @@ module.exports = function(io) {
   });
   
   mailin.on('validateSender', function(session, address, callback) {
-    if (/163.com/ig.test(address)) { 
-        let _err = new Error('You are blocked(TM你已经被我ban了)'); 
+    let hostname = '';
+    if(/@(.*)/.test(address))
+        hostname = RegExp.$1.toLocaleLowerCase()
+
+    if (config.ban_send_from_domain.includes(hostname)) { 
+        let _err = new Error('this domain has  blocked(你的域名已经被我ban了)'); 
         _err.responseCode = 530; 
         callback(_err);
     } else {
@@ -57,7 +57,7 @@ module.exports = function(io) {
     });
 
     socket.on('set shortid', function(id) {
-      if(process.env.BLACKLIST && config.pre_blacklist.indexOf(id.toLowerCase())>-1){
+      if(config.pre_blacklist.indexOf(id.toLowerCase())>-1){
         return socket.emit('shortid', shortid.generate().toLowerCase());
       }
       onlines.delete(socket.shortid);
