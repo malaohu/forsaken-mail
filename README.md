@@ -22,11 +22,20 @@ Forsaken-Mail
 npm install && npm start
 ```
 
+或利用pm2 启动本项目
 ```
 pm2 start start.json
+```
+
+或Docker启动
+```
+docker pull malaohu/
+docker run --name forsaken-mail -d -p 25:25 -p 3000:3000 malaohu/forsaken-mail
+```
 
 
 愉快的使用吧！ 
+http://ip:3000
 
 ### 配置
 
