@@ -1,26 +1,25 @@
 {
   "name": "forsaken-mail",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "app.js",
   "scripts": {
     "start": "node ./bin/www",
-    "start-blacklist": "BLACKLIST=1 node ./bin/www",
-    "test": "PORT=3002 BLACKLIST=1 node ./bin/www"
+    "test": "PORT=3002 node ./bin/www"
   },
   "engines": {
     "node": ">=4.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/denghongcai/forrsaken-mail.git"
+    "url": "git+https://github.com/malaohu/forrsaken-mail.git"
   },
   "author": "Hongcai Deng",
   "license": "GPL-2.0",
   "bugs": {
-    "url": "https://github.com/denghongcai/forrsaken-mail/issues"
+    "url": "https://github.com/malaohu/forrsaken-mail/issues"
   },
-  "homepage": "https://github.com/denghongcai/forrsaken-mail#readme",
+  "homepage": "https://github.com/malaohu/forrsaken-mail#readme",
   "dependencies": {
     "body-parser": "^1.14.2",
     "debug": "^2.2.0",
