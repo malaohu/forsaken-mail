@@ -6,6 +6,8 @@ $(function(){
   $('.ui.modal')
     .modal()
   ;
+ 
+  Push.Permission.request();
 
   var clipboard = new Clipboard('.copyable');
 
@@ -41,7 +43,7 @@ $(function(){
 
   $maillist.on('click', 'tr', function() {
     var mail = $(this).data('mail');
-    $('#mailcard .header').text(mail.headers.subject || '无主题');
+    $('#mailcard .header').text(mail.subject || '无主题');
     $('#mailcard .content:last').html(mail.html);
     $('#mailcard i').click(function() {
       $('#raw').modal('show');
@@ -57,6 +59,7 @@ $(function(){
     localStorage.setItem('shortid', id);
     var mailaddress = id + '@' + location.hostname;
     $('#shortid').val(mailaddress).parent().siblings('button').find('.mail').attr('data-clipboard-text', mailaddress);
+    $("#sendemail").attr("href", "mailto:" + mailaddress);
   };
 
   $('#refreshShortid').click(function() {
@@ -80,23 +83,15 @@ $(function(){
   });
 
   socket.on('mail', function(mail) {
-    if(('Notification' in window)) {
-      if(Notification.permission === 'granted') {
-        new Notification('New mail from ' + mail.headers.from);
-      }
-      else if(Notification.permission !== 'denied') {
-        Notification.requestPermission(function(permission) {
-          if(permission === 'granted') {
-            new Notification('New mail from ' + mail.headers.from);
-          }
-        })
-      }
-    }
+    Push.create("新邮件", {
+      body: "邮件来自："+ mail.from,
+      timeout: 4000
+    }); 
     $tr = $('<tr>').data('mail', mail);
     $tr
-      .append($('<td>').text(mail.headers.from))
-      .append($('<td>').text(mail.headers.subject || '无主题'))
-      .append($('<td>').text((new Date(mail.headers.date)).toLocaleTimeString()));
+      .append($('<td>').text(mail.from))
+      .append($('<td>').text(mail.subject || '无主题'))
+      .append($('<td>').text((new Date(mail.date)).toLocaleTimeString()));
     $maillist.prepend($tr);
   });
 });
