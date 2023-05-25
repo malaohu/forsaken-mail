@@ -41,4 +41,4 @@ http://ip:3000
 
 config.js 支持黑名单, 支持拒收某域名的邮件
 
-推荐：cloudflare.com
+推荐：https://cloudflare.com
