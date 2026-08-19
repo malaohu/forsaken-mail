@@ -69,6 +69,7 @@ $(function(){
   socket.on('connect', function() {
     if(('localStorage' in window)) {
       var shortid = localStorage.getItem('shortid');
+      alert(shortid);
       if(!shortid) {
         socket.emit('request shortid', true);
       }

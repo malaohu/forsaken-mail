@@ -1,13 +1,10 @@
-/**
- * Created by Hongcai Deng on 2015/12/28.
- */
-
 'use strict';
 
 let path = require('path');
 let mailin = require('node-mailin');
 let config = require(path.join(__dirname, '..', 'config-default.json'));
 let logger = require('tracer').console()
+let ncache = require('memory-cache')
 
 mailin.start(config.mailin);
 
@@ -16,7 +13,10 @@ mailin.on('error', function(err) {
 });
 
 mailin.on('message', function (connection, data, content) {
-  logger.info("FROM:" + data.envelopeFrom.address + "  TO:"+ data.envelopeTo[0].address);
+  let domain = data.envelopeFrom.address.toLowerCase().split("@")[1]
+  let to_email = data.envelopeTo[0].address.toLowerCase()
+  let key =domain+"#"+ to_email
+  ncache.put(key, data.html, 1000 * 60 * 10)
 });
 
 module.exports = mailin;

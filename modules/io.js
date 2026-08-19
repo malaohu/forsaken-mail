@@ -1,5 +1,4 @@
 'use strict';
-
 let shortid = require('shortid');
 let mailin = require('./mailin');
 let config = require('../config')
@@ -7,13 +6,13 @@ let onlines = new Map();
 
 module.exports = function(io) {
   mailin.on('message', function(connection, data) {
-    console.log("*****************************")
-    console.log("标题：" + data.subject)
-    console.log("HTML：" + data.textAsHtml)
-    console.log("文本：" + data.text)
-    console.log("时间：" + data.date)
-    console.log("发件：" + data.from.text)
-    console.log("*****************************")
+    // console.log("*****************************")
+    // console.log("标题：" + data.subject)
+    // console.log("HTML：" + data.textAsHtml)
+    // console.log("文本：" + data.text)
+    // console.log("时间：" + data.date)
+    // console.log("发件：" + data.from.text)
+    // console.log("*****************************")
       
     let to = data.envelopeTo[0].address.toLowerCase();
     let exp = /[\w\._\-\+]+@[\w\._\-\+]+/i;
@@ -40,7 +39,7 @@ module.exports = function(io) {
         hostname = RegExp.$1.toLocaleLowerCase()
 
     if (config.ban_send_from_domain.includes(hostname)) { 
-        let _err = new Error('this domain has  blocked(你的域名已经被我ban了)'); 
+        let _err = new Error('the domain has  blocked'); 
         _err.responseCode = 530; 
         callback(_err);
     } else {
