@@ -1,7 +1,7 @@
 Forsaken-Mail
 ==============
 即收即毁的临时邮件服务
-
+ 
 [在线演示](http://forsaken.somecolor.cc:3000/)
 
 
@@ -40,3 +40,5 @@ http://ip:3000
 ### 配置
 
 config.js 支持黑名单, 支持拒收某域名的邮件
+
+推荐：https://cloudflare.com
